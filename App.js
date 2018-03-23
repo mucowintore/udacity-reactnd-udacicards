@@ -6,6 +6,7 @@ import {
   StatusBar, 
   Dimensions,
 } from 'react-native'
+import Deck from './src/components/Deck'
 import DeckList from './src/components/DeckList'
 
 const dummyDecksData = [
@@ -18,12 +19,20 @@ const dummyDecksData = [
   { key: 'udacicars', deckTitle: 'udacicars', deckCardCount: 44 },
 ]
 
+const deckData = { 
+  deckTitle: 'udacicards', 
+  deckCardCount: 4 
+}
+
+console.log(deckData)
+
 export default class App extends React.Component {
   render () {
     return (
       <View style={styles.container}>
         <View style={{ height: 20 }} />
-        <DeckList decksData={dummyDecksData} />
+        <Deck deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/>
+        {/* <DeckList decksData={dummyDecksData} /> */}
       </View>
     )
   }
