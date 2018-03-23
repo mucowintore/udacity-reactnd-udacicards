@@ -1,12 +1,15 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
 const DeckListItem = ({ deckTitle, deckCardCount }) => (
-  <View style={styles.deck}>
-    <Text style={styles.deckTitle}>{deckTitle}</Text>
-    <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
-  </View>
+  <TouchableOpacity>
+    <View style={styles.deck}>
+      <Text style={styles.deckTitle}>{deckTitle}</Text>
+      <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
+    </View>
+  </TouchableOpacity>
+  
 )
 
 DeckListItem.propTypes = {
