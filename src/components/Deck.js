@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const Deck = ({ deckTitle, deckCardCount }) => (
   <View style={styles.container}>
-    <View style={[styles.container, {flex: 2}]}>
+    <View style={styles.container}>
       <Text style={styles.deckTitle}>{deckTitle}</Text>
       <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
     </View>
