@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native'
 
 class DeckForm extends React.Component {
   state = {
@@ -8,7 +8,7 @@ class DeckForm extends React.Component {
 
   render () {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.inputPrompt}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.inputField}
@@ -23,6 +23,7 @@ class DeckForm extends React.Component {
   }
 }
 
+const { width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -30,7 +31,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   inputPrompt: {
-    fontSize: 50,
+    fontSize: 40,
+    fontWeight: 'bold',
     textAlign: 'center',
     margin: 20,
     marginBottom: 50,
@@ -44,11 +46,12 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 5,
     borderWidth: 1,
+    width: width * 0.85,
   },
   submitBtn: {
     marginLeft: 100,
     marginRight: 100,
-    marginTop: 50,
+    marginTop: 30,
     backgroundColor: 'black',
     borderRadius: 5,
     paddingLeft: 20,
@@ -59,6 +62,7 @@ const styles = StyleSheet.create({
   },
   submitBtnText: {
     fontSize: 30,
+    fontWeight: 'bold',
     textAlign: 'center',
     color: 'white'
   }

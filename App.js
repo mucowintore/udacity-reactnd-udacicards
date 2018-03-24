@@ -26,8 +26,6 @@ const deckData = {
   deckCardCount: 4 
 }
 
-console.log(deckData)
-
 export default class App extends React.Component {
   render () {
     return (
@@ -35,8 +33,8 @@ export default class App extends React.Component {
         <View style={{ height: 20 }} />
         {/* <Deck deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/> */}
         {/* <DeckList decksData={dummyDecksData} /> */}
-        {/* <DeckForm /> */}
-        <QuestionForm />
+        <DeckForm />
+        {/* <QuestionForm /> */}
       </View>
     )
   }

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 
 const Deck = ({ deckTitle, deckCardCount }) => (
   <View style={styles.container}>
-    <View style={styles.container}>
+    <View style={[styles.container, {justifyContent: 'flex-end'}]}>
       <Text style={styles.deckTitle}>{deckTitle}</Text>
       <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
     </View>
-    <View style={styles.container}>
+    <View style={[styles.container, {justifyContent: 'flex-start'}]}>
       <TouchableOpacity style={[styles.btn, { borderColor: 'black', borderWidth: 1}]}>
         <Text style={styles.btnText}>Add Card</Text>
       </TouchableOpacity>
@@ -24,6 +24,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 40,
+    marginBottom: 40,
   },
   deckTitle: {
     fontSize: 60,
