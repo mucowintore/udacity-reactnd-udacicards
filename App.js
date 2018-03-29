@@ -11,7 +11,8 @@ import DeckList from './src/components/DeckList'
 import DeckForm from './src/components/DeckForm'
 import QuestionForm from './src/components/QuestionForm'
 import Button from './src/components/Button'
-import QuizSummary from './src/components/QuizSummary';
+import QuizSummary from './src/components/QuizSummary'
+import QuizQuestion from './src/components/QuizQuestion'
 
 const dummyDecksData = [
   { key:'udacicards', deckTitle: 'udacicards', deckCardCount: 6 },
@@ -38,7 +39,8 @@ export default class App extends React.Component {
         {/* <DeckForm /> */}
         {/* <QuestionForm /> */}
         {/* <Button backgroundColor='black' textColor='white'></Button> */}
-        <QuizSummary />
+        {/* <QuizSummary /> */}
+        <QuizQuestion/>
       </View>
     )
   }

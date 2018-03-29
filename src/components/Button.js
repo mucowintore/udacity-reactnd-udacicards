@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
   },
   bntText: {
     fontSize: 30,
-    fontWeight: 'bold',
     textAlign: 'center',
   }
 })
