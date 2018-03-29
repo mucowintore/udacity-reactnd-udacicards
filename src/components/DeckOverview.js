@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
-const Deck = ({ deckTitle, deckCardCount }) => (
+const DeckOverview = ({ deckTitle, deckCardCount }) => (
   <View style={styles.container}>
     <View style={[styles.container, {justifyContent: 'flex-end'}]}>
       <Text style={styles.deckTitle}>{deckTitle}</Text>
@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
   },
 })
 
-Deck.propTypes = {
+DeckOverview.propTypes = {
   deckTitle: PropTypes.string.isRequired,
   deckCardCount: PropTypes.number.isRequired,
 }
 
-export default Deck
+export default DeckOverview

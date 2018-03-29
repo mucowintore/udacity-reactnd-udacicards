@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
   },
   submitBtnText: {
     fontSize: 30,
-    fontWeight: 'bold',
     textAlign: 'center',
     color: 'white'
   }

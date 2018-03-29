@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   },
   inputPrompt: {
     fontSize: 40,
-    fontWeight: 'bold',
     textAlign: 'center',
     margin: 20,
     marginBottom: 50,
@@ -62,7 +61,6 @@ const styles = StyleSheet.create({
   },
   submitBtnText: {
     fontSize: 30,
-    fontWeight: 'bold',
     textAlign: 'center',
     color: 'white'
   }

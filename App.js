@@ -6,10 +6,12 @@ import {
   StatusBar, 
   Dimensions,
 } from 'react-native'
-import Deck from './src/components/Deck'
+import DeckOverview from './src/components/DeckOverview'
 import DeckList from './src/components/DeckList'
 import DeckForm from './src/components/DeckForm'
 import QuestionForm from './src/components/QuestionForm'
+import Button from './src/components/Button'
+import QuizSummary from './src/components/QuizSummary';
 
 const dummyDecksData = [
   { key:'udacicards', deckTitle: 'udacicards', deckCardCount: 6 },
@@ -31,10 +33,12 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <View style={{ height: 20 }} />
-        {/* <Deck deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/> */}
+        {/* <DeckOverview deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/> */}
         {/* <DeckList decksData={dummyDecksData} /> */}
-        <DeckForm />
+        {/* <DeckForm /> */}
         {/* <QuestionForm /> */}
+        {/* <Button backgroundColor='black' textColor='white'></Button> */}
+        <QuizSummary />
       </View>
     )
   }
