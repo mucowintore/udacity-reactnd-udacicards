@@ -15,7 +15,7 @@ class DeckForm extends React.Component {
           placeholder='Deck Title'
           onChangeText={(text) => this.setState({ deckTitle: text })}
         />
-        <TouchableOpacity style={styles.submitBtn}>
+        <TouchableOpacity style={styles.submitBtn} onPress={() => this.props.navigation.navigate('DeckList')}>
           <Text style={styles.submitBtnText}>Submit</Text>
         </TouchableOpacity>
       </View>

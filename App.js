@@ -13,21 +13,75 @@ import QuestionForm from './src/components/QuestionForm'
 import Button from './src/components/Button'
 import QuizSummary from './src/components/QuizSummary'
 import QuizQuestion from './src/components/QuizQuestion'
+import { TabNavigator, StackNavigator } from 'react-navigation'
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 
-const dummyDecksData = [
-  { key:'udacicards', deckTitle: 'udacicards', deckCardCount: 6 },
-  { key:'udacifingers', deckTitle: 'udacifingers', deckCardCount: 3 },
-  { key: 'udacisquares', deckTitle: 'udacisquares', deckCardCount: 4 },
-  { key: 'udaciboats', deckTitle: 'udaciboats', deckCardCount: 989 },
-  { key: 'udaciflowers', deckTitle: 'udaciflowers', deckCardCount: 232 },
-  { key: 'udacishells', deckTitle: 'udacishells', deckCardCount: 33 },
-  { key: 'udacicars', deckTitle: 'udacicars', deckCardCount: 44 },
-]
 
 const deckData = { 
   deckTitle: 'udacicards', 
   deckCardCount: 4 
 }
+
+const Tabs = TabNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />,
+    }
+  },
+  DeckForm: {
+    screen: DeckForm,
+    navigationOptions: {
+      tabBarLabel: 'New Deck',
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='add' size={30} color={tintColor} />
+
+    }
+  }
+}, {
+  navigationOptions: {
+    header: null,
+  },
+  tabBarOptions: {
+    activeTintColor: 'black',
+    style: {
+      height: 56,
+      backgroundColor: 'white',
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowRadius: 6,
+      shadowOpacity: 1,
+    },
+  },
+  animationEnabled: true,
+  swipeEnabled: true,
+})
+
+const MainStack = StackNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  DeckForm: {
+    screen: DeckForm,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'green',
+      }
+    }
+  }
+}, {
+  navigationOptions: {
+    header: null,
+  }
+})
+
 
 export default class App extends React.Component {
   render () {
@@ -40,7 +94,9 @@ export default class App extends React.Component {
         {/* <QuestionForm /> */}
         {/* <Button backgroundColor='black' textColor='white'></Button> */}
         {/* <QuizSummary /> */}
-        <QuizQuestion/>
+        {/* <QuizQuestion/> */}
+        <Tabs />
+        {/* <DeckList/> */}
       </View>
     )
   }
@@ -49,8 +105,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 })

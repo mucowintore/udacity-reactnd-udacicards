@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   },
   deckTitle: {
     fontSize: 40,
-    fontWeight: 'bold',
   },
   deckCardCount: {
     fontSize: 20,
