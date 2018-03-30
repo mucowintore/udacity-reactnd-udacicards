@@ -1,23 +1,37 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import PropTypes from 'prop-types'
 
-const DeckOverview = ({ deckTitle, deckCardCount }) => (
-  <View style={styles.container}>
-    <View style={[styles.container, {justifyContent: 'flex-end'}]}>
-      <Text style={styles.deckTitle}>{deckTitle}</Text>
-      <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
-    </View>
-    <View style={[styles.container, {justifyContent: 'flex-start'}]}>
-      <TouchableOpacity style={[styles.btn, { borderColor: 'black', borderWidth: 1}]}>
-        <Text style={styles.btnText}>Add Card</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.btn, { marginTop: 10, backgroundColor: 'black'}]}>
-        <Text style={[styles.btnText, { color: 'white'}]}>Start Quiz</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-)
+class DeckOverview extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params.deckTitle
+  })
+  render() {
+    const { deckTitle, deckCardCount } = this.props.navigation.state.params
+    return (
+      <View style={styles.container}>
+        <View style={[styles.container, {justifyContent: 'flex-end'}]}>
+          <Text style={styles.deckTitle}>{deckTitle}</Text>
+          <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
+        </View>
+        <View style={[styles.container, {justifyContent: 'flex-start'}]}>
+          <TouchableOpacity 
+            style={[styles.btn, { borderColor: 'black', borderWidth: 1}]} 
+            onPress={() => this.props.navigation.navigate('CardForm')}
+          >
+            <Text style={styles.btnText}>Add Card</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[styles.btn, { marginTop: 10, backgroundColor: 'black'}]}
+            onPress={() => this.props.navigation.navigate('QuizQuestion')}>
+            <Text style={[styles.btnText, { color: 'white'}]}>Start Quiz</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -50,9 +64,9 @@ const styles = StyleSheet.create({
   },
 })
 
-DeckOverview.propTypes = {
-  deckTitle: PropTypes.string.isRequired,
-  deckCardCount: PropTypes.number.isRequired,
-}
+// DeckOverview.propTypes = {
+//   deckTitle: PropTypes.string.isRequired,
+//   deckCardCount: PropTypes.number.isRequired,
+// }
 
-export default DeckOverview
+export default withNavigation(DeckOverview)

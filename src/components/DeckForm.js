@@ -1,24 +1,29 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, KeyboardAvoidingView } from 'react-native'
 
 class DeckForm extends React.Component {
   state = {
     deckTitle: ''
   }
 
+  handleSubmit = () => {
+    // TODO Dispatch addDeck action
+    alert(`Deck Title: ${this.state.deckTitle}`)
+    this.props.navigation.navigate('DeckList')
+  }
   render () {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior='padding'>
         <Text style={styles.inputPrompt}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.inputField}
           placeholder='Deck Title'
           onChangeText={(text) => this.setState({ deckTitle: text })}
         />
-        <TouchableOpacity style={styles.submitBtn} onPress={() => this.props.navigation.navigate('DeckList')}>
+        <TouchableOpacity style={styles.submitBtn} onPress={this.handleSubmit}>
           <Text style={styles.submitBtnText}>Submit</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -32,6 +37,7 @@ const styles = StyleSheet.create({
   },
   inputPrompt: {
     fontSize: 40,
+    fontWeight: '600',
     textAlign: 'center',
     margin: 20,
     marginBottom: 50,

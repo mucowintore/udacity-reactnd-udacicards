@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import Button from './Button'
+import { withNavigation } from 'react-navigation'
+import OutlineButton from './OutlineButton'
 
 const props = {
   correct: 7,
@@ -24,8 +25,18 @@ class QuizSummary extends Component {
           </Text>
         </View>
         <View style={styles.container}>
-          <Button backgroundColor='black' textColor='white' style={{ marginBottom: 15 }}>Back to Deck</Button>
-          <Button backgroundColor='black' textColor='white'>Back to Decks</Button>
+          <OutlineButton 
+            borderColor='black' textColor='black' style={{ marginBottom: 15 }}
+            onPress={() => this.props.navigation.navigate('DeckOverview')}
+          >
+              Back to Deck
+          </OutlineButton>
+          <OutlineButton 
+            borderColor='black' textColor='black'
+            onPress={() => this.props.navigation.navigate('DeckList')}
+          >
+            Back to Decks
+          </OutlineButton>
         </View>
       </View>
       
@@ -50,4 +61,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default QuizSummary
+export default withNavigation(QuizSummary)

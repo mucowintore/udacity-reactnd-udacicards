@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import Button from './Button'
 
 const props = {
@@ -24,8 +25,15 @@ class QuizQuestion extends Component {
           </TouchableOpacity>
         </View>
         <View style={[styles.container, {flex: 3}]}>
-          <Button style={{marginBottom: 5}} backgroundColor='green' textColor='white'>Correct</Button>
-          <Button backgroundColor='red' textColor='white'>Incorrect</Button>
+          <Button style={{marginBottom: 5}} backgroundColor='green' textColor='white'>
+            Correct
+          </Button>
+          <Button 
+            backgroundColor='red' textColor='white'
+            onPress={() => this.props.navigation.navigate('QuizSummary')}
+          >
+            Incorrect
+          </Button>
         </View>
       </View>
     )
@@ -52,4 +60,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default QuizQuestion
+export default withNavigation(QuizQuestion)

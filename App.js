@@ -9,10 +9,11 @@ import {
 import DeckOverview from './src/components/DeckOverview'
 import DeckList from './src/components/DeckList'
 import DeckForm from './src/components/DeckForm'
-import QuestionForm from './src/components/QuestionForm'
+import CardForm from './src/components/CardForm'
 import Button from './src/components/Button'
 import QuizSummary from './src/components/QuizSummary'
 import QuizQuestion from './src/components/QuizQuestion'
+import OutlineButton from './src/components/OutlineButton'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 
@@ -22,9 +23,59 @@ const deckData = {
   deckCardCount: 4 
 }
 
-const Tabs = TabNavigator({
+const DeckStack = StackNavigator({
   DeckList: {
     screen: DeckList,
+    navigationOptions: {
+      header: null,
+      backgroundColor: 'white'
+    }
+  },
+  DeckOverview: {
+    screen: DeckOverview,
+    navigationOptions: {
+      headerTintColor: 'black',
+      headerStyle: {
+        backgroundColor: 'white',
+      }
+    }
+  },
+  CardForm: {
+    screen: CardForm,
+    navigationOptions: {
+      headerTintColor: 'black',
+      headerStyle: {
+        backgroundColor: 'white',
+      }
+    }
+  },
+  QuizQuestion: {
+    screen: QuizQuestion,
+    navigationOptions: {
+      headerTintColor: 'black',
+      headerStyle: {
+        backgroundColor: 'white',
+      }
+    }
+  },
+  QuizSummary: {
+    screen: QuizSummary,
+    navigationOptions: {
+      headerTintColor: 'black',
+      headerStyle: {
+        backgroundColor: 'white',
+      }
+    }
+  },  
+}, {
+  navigationOptions: {
+    header: null
+  }
+})
+
+const Tabs = TabNavigator({
+  DeckStack: {
+    screen: DeckStack,
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />,
@@ -43,10 +94,10 @@ const Tabs = TabNavigator({
     header: null,
   },
   tabBarOptions: {
-    activeTintColor: 'black',
+    activeTintColor: 'white',
     style: {
       height: 56,
-      backgroundColor: 'white',
+      backgroundColor: 'black',
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
@@ -57,37 +108,16 @@ const Tabs = TabNavigator({
     },
   },
   animationEnabled: true,
-  swipeEnabled: true,
 })
 
-const MainStack = StackNavigator({
-  DeckList: {
-    screen: DeckList,
-    navigationOptions: {
-      header: null,
-    }
-  },
-  DeckForm: {
-    screen: DeckForm,
-    navigationOptions: {
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: 'green',
-      }
-    }
-  }
-}, {
-  navigationOptions: {
-    header: null,
-  }
-})
+
 
 
 export default class App extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <View style={{ height: 20 }} />
+        {/* <View style={{ height: 20 }} /> */}
         {/* <DeckOverview deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/> */}
         {/* <DeckList decksData={dummyDecksData} /> */}
         {/* <DeckForm /> */}
@@ -97,6 +127,10 @@ export default class App extends React.Component {
         {/* <QuizQuestion/> */}
         <Tabs />
         {/* <DeckList/> */}
+        {/* <View style={[styles.container, {justifyContent: 'center', alignItems: 'center'}]}>
+          <OutlineButton borderColor='black' textColor='black'>Button</OutlineButton>
+        </View> */}
+        
       </View>
     )
   }

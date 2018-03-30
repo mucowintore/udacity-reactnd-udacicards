@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import PropTypes from 'prop-types'
 
-const DeckListItem = ({ deckTitle, deckCardCount }) => (
-  <TouchableOpacity>
+const DeckListItem = ({ deckTitle, deckCardCount, navigation }) => (
+  <TouchableOpacity onPress={() => navigation.navigate('DeckOverview', { deckTitle, deckCardCount })}>
     <View style={styles.deck}>
       <Text style={styles.deckTitle}>{deckTitle}</Text>
       <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
   },
   deckTitle: {
     fontSize: 40,
+    fontWeight: 'bold'
   },
   deckCardCount: {
     fontSize: 20,
@@ -35,4 +37,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DeckListItem
+export default withNavigation(DeckListItem)
