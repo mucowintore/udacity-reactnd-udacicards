@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, KeyboardAvoidingView } from 'react-native'
+import Button from './Button'
 
 class DeckForm extends React.Component {
   state = {
@@ -16,13 +17,14 @@ class DeckForm extends React.Component {
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
         <Text style={styles.inputPrompt}>What is the title of your new deck?</Text>
         <TextInput
-          style={styles.inputField}
+          style={[styles.inputField, { marginBottom: 30}]}
           placeholder='Deck Title'
           onChangeText={(text) => this.setState({ deckTitle: text })}
         />
-        <TouchableOpacity style={styles.submitBtn} onPress={this.handleSubmit}>
-          <Text style={styles.submitBtnText}>Submit</Text>
-        </TouchableOpacity>
+        <Button backgroundColor='black' textColor='white' onPress={this.handleSubmit}>Create Deck</Button>
+        {/* <TouchableOpacity style={styles.submitBtn} onPress={this.handleSubmit}>
+          <Text style={styles.submitBtnText}>Create Deck</Text>
+        </TouchableOpacity> */}
       </KeyboardAvoidingView>
     )
   }
@@ -53,23 +55,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: width * 0.85,
   },
-  submitBtn: {
-    marginLeft: 100,
-    marginRight: 100,
-    marginTop: 30,
-    backgroundColor: 'black',
-    borderRadius: 5,
-    paddingLeft: 20,
-    paddingRight: 20,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  submitBtnText: {
-    fontSize: 30,
-    textAlign: 'center',
-    color: 'white'
-  }
 })
 
 export default DeckForm

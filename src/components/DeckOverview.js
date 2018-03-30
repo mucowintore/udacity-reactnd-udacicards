@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   deckTitle: {
-    fontSize: 60,
+    fontSize: 50,
     fontWeight: 'bold',
   },
   deckCardCount: {

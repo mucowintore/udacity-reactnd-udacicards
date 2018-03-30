@@ -116,22 +116,23 @@ const Tabs = TabNavigator({
 export default class App extends React.Component {
   render () {
     return (
-      <View style={styles.container}>
-        {/* <View style={{ height: 20 }} /> */}
-        {/* <DeckOverview deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/> */}
-        {/* <DeckList decksData={dummyDecksData} /> */}
-        {/* <DeckForm /> */}
-        {/* <QuestionForm /> */}
-        {/* <Button backgroundColor='black' textColor='white'></Button> */}
-        {/* <QuizSummary /> */}
-        {/* <QuizQuestion/> */}
-        <Tabs />
-        {/* <DeckList/> */}
-        {/* <View style={[styles.container, {justifyContent: 'center', alignItems: 'center'}]}>
-          <OutlineButton borderColor='black' textColor='black'>Button</OutlineButton>
-        </View> */}
+      <Tabs/>
+      // <View style={styles.container}>
+      //   {/* <View style={{ height: 20 }} /> */}
+      //   {/* <DeckOverview deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/> */}
+      //   {/* <DeckList decksData={dummyDecksData} /> */}
+      //   {/* <DeckForm /> */}
+      //   {/* <QuestionForm /> */}
+      //   {/* <Button backgroundColor='black' textColor='white'></Button> */}
+      //   {/* <QuizSummary /> */}
+      //   {/* <QuizQuestion/> */}
+      //   <Tabs />
+      //   {/* <DeckList/> */}
+      //   {/* <View style={[styles.container, {justifyContent: 'center', alignItems: 'center'}]}>
+      //     <OutlineButton borderColor='black' textColor='black'>Button</OutlineButton>
+      //   </View> */}
         
-      </View>
+      // </View>
     )
   }
 }
