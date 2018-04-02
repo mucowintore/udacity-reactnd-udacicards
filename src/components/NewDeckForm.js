@@ -12,10 +12,11 @@ class NewDeckForm extends React.Component {
   handleSubmit = () => {
     const { deckTitle } = this.state
 
-    this.props.addDeck({ deckTitle })
+    this.props.addDeck(deckTitle)
     Keyboard.dismiss()
     this.props.navigation.navigate('DeckList')
   }
+
   render () {
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>

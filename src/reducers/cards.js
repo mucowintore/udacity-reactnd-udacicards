@@ -17,9 +17,9 @@ export default function reducer (cards = {}, action) {
 
 const ADD_CARD = 'ADD_CARD'
 
-export const addCard = ({ parentId, question, answer }) => ({ 
+export const addCard = (parentId, question, answer) => ({ 
   type: ADD_CARD, 
-  addedDeck: { 
+  addedCard: { 
     parentId,
     question,
     answer,

@@ -18,7 +18,7 @@ import NewDeckForm from './src/components/NewDeckForm'
 import NewCardForm from './src/components/NewCardForm'
 import Button from './src/components/Button'
 import QuizSummary from './src/components/QuizSummary'
-import QuizCard from './src/components/QuizCard'
+import QuizCards from './src/components/QuizCards'
 import OutlineButton from './src/components/OutlineButton'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
@@ -67,8 +67,8 @@ const DeckStack = StackNavigator({
       }
     }
   },
-  QuizQuestion: {
-    screen: QuizCard,
+  QuizCards: {
+    screen: QuizCards,
     navigationOptions: {
       headerTintColor: 'black',
       headerStyle: {

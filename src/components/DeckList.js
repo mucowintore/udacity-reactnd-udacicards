@@ -9,9 +9,9 @@ import DeckListItem from './DeckListItem'
 import Button from './Button'
 
 class DeckList extends React.Component {
-  renderSeparator = () => (
-    <View style={styles.separator} />
-  )
+  handleAddDeck = () => {
+    this.props.navigation.navigate('NewDeckForm')
+  }
   render() {
     // console.log(`DeckList instance props: ${JSON.stringify(this.props)}`)
     const { decksData } = this.props
@@ -22,7 +22,7 @@ class DeckList extends React.Component {
           ? <FlatList
               style={{flex: 1}}
               data={decksData}
-              renderItem={({ item }) => <DeckListItem deckId={item.id}/>}
+              renderItem={({ item }) => <DeckListItem id={item.id}/>}
               ItemSeparatorComponent={this.renderSeparator}
             />
           : <View>
@@ -31,7 +31,7 @@ class DeckList extends React.Component {
               </View>
               <View style={[styles.container, {flex: 1, justifyContent: 'flex-start'}]}>
                 <Button 
-                  onPress={() => this.props.navigation.navigate('NewDeckForm')}
+                  onPress={this.handleAddDeck}
                   backgroundColor='black' textColor='white' style={styles.btn}
                 >
                   Add Deck

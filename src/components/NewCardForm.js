@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Text, KeyboardAvoidingView, View, StyleSheet, TextInput, TouchableOpacity, Dimensions } from 'react-native'
+import { Text, KeyboardAvoidingView, View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Keyboard } from 'react-native'
 import { connect } from 'react-redux'
+import { withNavigation } from 'react-navigation'
 import { addCard } from '../reducers/cards'
+import { incrementDeckCardCount } from '../reducers/decks'
 
 export class NewCardForm extends Component {
   state = {
@@ -11,8 +13,14 @@ export class NewCardForm extends Component {
 
   handleSubmit = () => {
     const { question, answer } = this.state
+    const { parentId } = this.props.navigation.state.params
 
     this.props.addCard(parentId, question, answer)
+    this.props.incrementDeckCardCount(parentId)
+
+    Keyboard.dismiss()
+
+    this.props.navigation.goBack()
   }
   render() {
     return (
@@ -31,7 +39,7 @@ export class NewCardForm extends Component {
             onChangeText={(text) => this.setState({ question: text })}
           />
         </View>
-        <TouchableOpacity style={styles.addBtn}>
+        <TouchableOpacity style={styles.addBtn} onPress={this.handleSubmit}>
           <Text style={styles.addBtnText}>Add Card</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -81,4 +89,5 @@ const styles = StyleSheet.create({
     color: 'white'
   }
 })
-export default NewCardForm
+
+export default withNavigation(connect(null, { addCard, incrementDeckCardCount })(NewCardForm))

@@ -1,7 +1,6 @@
 import { getDeckIds } from './decks'
-import uuid from 'uuid/v4'
 
-describe('Decks', () => {
+describe('Deck Reducer', () => {
   it('`getDeckIds`: returns an array containing the ids of all the decks in the store', () => {
     const decks = {
       '3b64075a-7e1b-4194-9d7f-40c4c3965244': {

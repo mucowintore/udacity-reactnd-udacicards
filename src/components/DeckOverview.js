@@ -8,6 +8,17 @@ class DeckOverview extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.deckTitle
   })
+
+  handleAddCard = () => {
+    const { id } = this.props
+    this.props.navigation.navigate('NewCardForm', { parentId: id })
+  }
+
+  handleStartQuiz = () => {
+    const { id } = this.props
+    this.props.navigation.navigate('QuizCards', { parentId: id })
+  }
+
   render() {
     const { deckTitle, deckCardCount } = this.props
     return (
@@ -19,13 +30,13 @@ class DeckOverview extends React.Component {
         <View style={[styles.container, {justifyContent: 'flex-start'}]}>
           <TouchableOpacity 
             style={[styles.btn, { borderColor: 'black', borderWidth: 1}]} 
-            onPress={() => this.props.navigation.navigate('NewCardForm')}
+            onPress={this.handleAddCard}
           >
             <Text style={styles.btnText}>Add Card</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={[styles.btn, { marginTop: 10, backgroundColor: 'black'}]}
-            onPress={() => this.props.navigation.navigate('QuizCard')}>
+            onPress={this.handleStartQuiz}>
             <Text style={[styles.btnText, { color: 'white'}]}>Start Quiz</Text>
           </TouchableOpacity>
         </View>
@@ -66,7 +77,7 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps ( { decks }, props) {
-  const { deckId } = props.navigation.state.params
-  return decks[deckId]
+  const { id } = props.navigation.state.params
+  return decks[id]
 }
 export default withNavigation(connect(mapStateToProps, null)(DeckOverview))

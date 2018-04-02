@@ -9,6 +9,16 @@ export default function reducer (decks = {}, action) {
         [addedDeck.id]: addedDeck,
       }
     }
+    case INCREMENT_DECK_CARD_COUNT: {
+      const { deckId } = action
+      return {
+        ...decks,
+        [deckId]: {
+          ...decks[deckId],
+          deckCardCount: decks[deckId].deckCardCount + 1
+        }
+      }
+    }
     default:
       return decks
   }
@@ -18,8 +28,9 @@ export const getDeckIds = (decks) => Object.keys(decks)
 
 
 const ADD_DECK = 'ADD_DECK'
+const INCREMENT_DECK_CARD_COUNT = 'INCREMENT_DECK_CARD_COUNT'
 
-export const addDeck = ({ deckTitle }) => ({ 
+export const addDeck = (deckTitle) => ({ 
   type: ADD_DECK, 
   addedDeck: { 
     deckTitle,
@@ -27,3 +38,5 @@ export const addDeck = ({ deckTitle }) => ({
     id: uuid() 
   }
 })
+
+export const incrementDeckCardCount = (deckId) => ({ type: INCREMENT_DECK_CARD_COUNT, deckId })
