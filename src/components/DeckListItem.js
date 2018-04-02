@@ -1,23 +1,33 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import { withNavigation } from 'react-navigation'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-const DeckListItem = ({ deckTitle, deckCardCount, navigation }) => (
-  <TouchableOpacity onPress={() => navigation.navigate('DeckOverview', { deckTitle, deckCardCount })}>
-    <View style={styles.deck}>
-      <Text style={styles.deckTitle}>{deckTitle}</Text>
-      <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
-    </View>
-  </TouchableOpacity>
-  
-)
+const DeckListItem = (props) => {
+  // console.log(`DeckListItem instance props: ${props}`)
+  const {
+    deckTitle,
+    deckCardCount,
+    deckId,
+    navigation
+  } = props
 
-DeckListItem.propTypes = {
-  deckTitle: PropTypes.string.isRequired,
-  deckCardCount: PropTypes.number.isRequired,
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('DeckOverview', { deckId })}>
+      <View style={styles.deck}>
+        <Text style={styles.deckTitle}>{deckTitle}</Text>
+        <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
+      </View>
+      <View style={styles.separator} />
+    </TouchableOpacity>
+  )
 }
 
+function mapStateToProps ({ decks }, props) {
+  // console.log(`DeckListItem mapStateToProps ownProps: ${JSON.stringify(props)}`)
+  return decks[props.deckId]
+}
 const styles = StyleSheet.create({
   deck : {
     flex: 1,
@@ -30,6 +40,11 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold'
   },
+  separator: {
+    height: 1,
+    width: Dimensions.get('window').width,
+    backgroundColor: "#CED0CE",
+  },
   deckCardCount: {
     fontSize: 20,
     textAlign: 'center',
@@ -37,4 +52,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(DeckListItem)
+export default withNavigation(connect(mapStateToProps)(DeckListItem))

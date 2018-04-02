@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import { Text, KeyboardAvoidingView, View, StyleSheet, TextInput, TouchableOpacity, Dimensions } from 'react-native'
+import { connect } from 'react-redux'
+import { addCard } from '../reducers/cards'
 
-export class CardForm extends Component {
+export class NewCardForm extends Component {
   state = {
     question: '',
     answer: '',
   }
 
+  handleSubmit = () => {
+    const { question, answer } = this.state
+
+    this.props.addCard(parentId, question, answer)
+  }
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
@@ -24,8 +31,8 @@ export class CardForm extends Component {
             onChangeText={(text) => this.setState({ question: text })}
           />
         </View>
-        <TouchableOpacity style={styles.submitBtn}>
-          <Text style={styles.submitBtnText}>Submit</Text>
+        <TouchableOpacity style={styles.addBtn}>
+          <Text style={styles.addBtnText}>Add Card</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     )
@@ -56,7 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
   },
-  submitBtn: {
+  addBtn: {
     marginLeft: 100,
     marginRight: 100,
     marginTop: 50,
@@ -68,10 +75,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  submitBtnText: {
+  addBtnText: {
     fontSize: 30,
     textAlign: 'center',
     color: 'white'
   }
 })
-export default CardForm
+export default NewCardForm

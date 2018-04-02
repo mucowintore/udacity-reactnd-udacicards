@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 import PropTypes from 'prop-types'
 
@@ -8,7 +9,7 @@ class DeckOverview extends React.Component {
     title: navigation.state.params.deckTitle
   })
   render() {
-    const { deckTitle, deckCardCount } = this.props.navigation.state.params
+    const { deckTitle, deckCardCount } = this.props
     return (
       <View style={styles.container}>
         <View style={[styles.container, {justifyContent: 'flex-end'}]}>
@@ -18,13 +19,13 @@ class DeckOverview extends React.Component {
         <View style={[styles.container, {justifyContent: 'flex-start'}]}>
           <TouchableOpacity 
             style={[styles.btn, { borderColor: 'black', borderWidth: 1}]} 
-            onPress={() => this.props.navigation.navigate('CardForm')}
+            onPress={() => this.props.navigation.navigate('NewCardForm')}
           >
             <Text style={styles.btnText}>Add Card</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={[styles.btn, { marginTop: 10, backgroundColor: 'black'}]}
-            onPress={() => this.props.navigation.navigate('QuizQuestion')}>
+            onPress={() => this.props.navigation.navigate('QuizCard')}>
             <Text style={[styles.btnText, { color: 'white'}]}>Start Quiz</Text>
           </TouchableOpacity>
         </View>
@@ -64,9 +65,8 @@ const styles = StyleSheet.create({
   },
 })
 
-// DeckOverview.propTypes = {
-//   deckTitle: PropTypes.string.isRequired,
-//   deckCardCount: PropTypes.number.isRequired,
-// }
-
-export default withNavigation(DeckOverview)
+function mapStateToProps ( { decks }, props) {
+  const { deckId } = props.navigation.state.params
+  return decks[deckId]
+}
+export default withNavigation(connect(mapStateToProps, null)(DeckOverview))

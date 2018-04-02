@@ -6,17 +6,35 @@ import {
   StatusBar, 
   Dimensions,
 } from 'react-native'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux' 
+import devToolsEnhancer from 'remote-redux-devtools'
+import rootReducer from './src/reducers'
+import { addDeck } from './src/reducers/decks'
+
 import DeckOverview from './src/components/DeckOverview'
 import DeckList from './src/components/DeckList'
-import DeckForm from './src/components/DeckForm'
-import CardForm from './src/components/CardForm'
+import NewDeckForm from './src/components/NewDeckForm'
+import NewCardForm from './src/components/NewCardForm'
 import Button from './src/components/Button'
 import QuizSummary from './src/components/QuizSummary'
-import QuizQuestion from './src/components/QuizQuestion'
+import QuizCard from './src/components/QuizCard'
 import OutlineButton from './src/components/OutlineButton'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 
+
+const store = createStore(rootReducer, devToolsEnhancer())
+const decksData = [
+  { key:'udacicards', deckTitle: 'udacicards', deckCardCount: 6 },
+  { key:'udacifingers', deckTitle: 'udacifingers', deckCardCount: 3 },
+  { key: 'udacisquares', deckTitle: 'udacisquares', deckCardCount: 4 },
+  { key: 'udaciboats', deckTitle: 'udaciboats', deckCardCount: 989 },
+  { key: 'udaciflowers', deckTitle: 'udaciflowers', deckCardCount: 232 },
+  { key: 'udacishells', deckTitle: 'udacishells', deckCardCount: 33 },
+  { key: 'udacicars', deckTitle: 'udacicars', deckCardCount: 44 },
+]
+// decksData.forEach(({ deckTitle }) => store.dispatch(addDeck(deckTitle)))
 
 const deckData = { 
   deckTitle: 'udacicards', 
@@ -40,8 +58,8 @@ const DeckStack = StackNavigator({
       }
     }
   },
-  CardForm: {
-    screen: CardForm,
+  NewCardForm: {
+    screen: NewCardForm,
     navigationOptions: {
       headerTintColor: 'black',
       headerStyle: {
@@ -50,7 +68,7 @@ const DeckStack = StackNavigator({
     }
   },
   QuizQuestion: {
-    screen: QuizQuestion,
+    screen: QuizCard,
     navigationOptions: {
       headerTintColor: 'black',
       headerStyle: {
@@ -81,8 +99,8 @@ const Tabs = TabNavigator({
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />,
     }
   },
-  DeckForm: {
-    screen: DeckForm,
+  NewDeckForm: {
+    screen: NewDeckForm,
     navigationOptions: {
       tabBarLabel: 'New Deck',
       tabBarIcon: ({ tintColor }) => <MaterialIcons name='add' size={30} color={tintColor} />
@@ -116,23 +134,23 @@ const Tabs = TabNavigator({
 export default class App extends React.Component {
   render () {
     return (
-      <Tabs/>
-      // <View style={styles.container}>
-      //   {/* <View style={{ height: 20 }} /> */}
-      //   {/* <DeckOverview deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/> */}
-      //   {/* <DeckList decksData={dummyDecksData} /> */}
-      //   {/* <DeckForm /> */}
-      //   {/* <QuestionForm /> */}
-      //   {/* <Button backgroundColor='black' textColor='white'></Button> */}
-      //   {/* <QuizSummary /> */}
-      //   {/* <QuizQuestion/> */}
-      //   <Tabs />
-      //   {/* <DeckList/> */}
-      //   {/* <View style={[styles.container, {justifyContent: 'center', alignItems: 'center'}]}>
-      //     <OutlineButton borderColor='black' textColor='black'>Button</OutlineButton>
-      //   </View> */}
-        
-      // </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+        {/* <View style={{ height: 20 }} /> */}
+        {/* <DeckOverview deckTitle={deckData.deckTitle} deckCardCount={deckData.deckCardCount}/> */}
+        {/* <DeckList decksData={dummyDecksData} /> */}
+        {/* <DeckForm /> */}
+        {/* <QuestionForm /> */}
+        {/* <Button backgroundColor='black' textColor='white'></Button> */}
+        {/* <QuizSummary /> */}
+        {/* <QuizQuestion/> */}
+          <Tabs />
+        {/* <DeckList/> */}
+        {/* <View style={[styles.container, {justifyContent: 'center', alignItems: 'center'}]}>
+          <OutlineButton borderColor='black' textColor='black'>Button</OutlineButton>
+        </View> */}
+        </View>
+      </Provider>
     )
   }
 }

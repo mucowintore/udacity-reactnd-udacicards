@@ -11,7 +11,7 @@ const props = {
   answerShown: false,
 }
 
-class QuizQuestion extends Component {
+class QuizCard extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(QuizQuestion)
+export default withNavigation(QuizCard)

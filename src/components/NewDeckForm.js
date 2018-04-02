@@ -1,15 +1,19 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, KeyboardAvoidingView, Keyboard } from 'react-native'
+import { connect } from 'react-redux'
 import Button from './Button'
+import { addDeck } from '../reducers/decks'
 
-class DeckForm extends React.Component {
+class NewDeckForm extends React.Component {
   state = {
     deckTitle: ''
   }
 
   handleSubmit = () => {
-    // TODO Dispatch addDeck action
-    alert(`Deck Title: ${this.state.deckTitle}`)
+    const { deckTitle } = this.state
+
+    this.props.addDeck({ deckTitle })
+    Keyboard.dismiss()
     this.props.navigation.navigate('DeckList')
   }
   render () {
@@ -57,4 +61,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default DeckForm
+export default connect(null, { addDeck })(NewDeckForm)
