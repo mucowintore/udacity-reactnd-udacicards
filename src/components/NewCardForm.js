@@ -5,6 +5,8 @@ import { withNavigation } from 'react-navigation'
 import { addCard } from '../reducers/cards'
 import { incrementDeckCardCount } from '../reducers/decks'
 
+import Button from './Button'
+
 export class NewCardForm extends Component {
   state = {
     question: '',
@@ -25,23 +27,27 @@ export class NewCardForm extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
-        <View style={styles.input}>
-          <Text style={styles.inputLabel}>Question</Text>
-          <TextInput 
-            style={styles.inputField}
-            onChangeText={(text) => this.setState({ question: text })}
-          />
+        <View style={[styles.container, { justifyContent: 'flex-end'}]}>
+          <View style={styles.input}>
+            <Text style={styles.inputLabel}>Question</Text>
+            <TextInput 
+              style={styles.inputField}
+              onChangeText={(text) => this.setState({ question: text })}
+            />
+          </View>
+          <View style={styles.input}>
+            <Text style={styles.inputLabel}>Answer</Text>
+            <TextInput 
+              style={styles.inputField}
+              onChangeText={(text) => this.setState({ question: text })}
+            />
+          </View>
         </View>
-        <View style={styles.input}>
-          <Text style={styles.inputLabel}>Answer</Text>
-          <TextInput 
-            style={styles.inputField}
-            onChangeText={(text) => this.setState({ question: text })}
-          />
+        <View style={styles.container}>
+          <Button onPress={this.handleSubmit}>
+            Submit
+          </Button>
         </View>
-        <TouchableOpacity style={styles.addBtn} onPress={this.handleSubmit}>
-          <Text style={styles.addBtnText}>Add Card</Text>
-        </TouchableOpacity>
       </KeyboardAvoidingView>
     )
   }
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   inputLabel: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: 'bold',
     paddingBottom: 2,
   },

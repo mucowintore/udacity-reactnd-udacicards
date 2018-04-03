@@ -13,7 +13,6 @@ class DeckList extends React.Component {
     this.props.navigation.navigate('NewDeckForm')
   }
   render() {
-    // console.log(`DeckList instance props: ${JSON.stringify(this.props)}`)
     const { decksData } = this.props
     
     return (
@@ -26,14 +25,11 @@ class DeckList extends React.Component {
               ItemSeparatorComponent={this.renderSeparator}
             />
           : <View>
-              <View style={[styles.container, {flex: 1, justifyContent: 'flex-end'}]}>
+              <View style={[styles.container, {justifyContent: 'flex-end'}]}>
                 <Text style={styles.noDeckText}>You don't have any deck!</Text>
               </View>
-              <View style={[styles.container, {flex: 1, justifyContent: 'flex-start'}]}>
-                <Button 
-                  onPress={this.handleAddDeck}
-                  backgroundColor='black' textColor='white' style={styles.btn}
-                >
+              <View style={[styles.container, {justifyContent: 'flex-start', marginTop: 20}]}>
+                <Button onPress={this.handleAddDeck}>
                   Add Deck
                 </Button>
               </View>
@@ -55,18 +51,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'stretch',
+    alignItems: 'center',
   },
   noDeckText: {
     textAlign: 'center',
-    fontSize: 50,
-    // fontWeight: 'bold',
-    color: 'grey',
+    fontSize: 45,
+    fontWeight: 'bold',
+    color: 'black',
     marginBottom: 20,
   },
-  btn: {
-    margin: 20
-  }
 })
 
 export default withNavigation(connect(mapStateToProps)(DeckList))

@@ -13,6 +13,13 @@ const Bold = ({ children }) => (
   <Text style={{fontWeight: 'bold'}}>{children}</Text>
 )
 
+handleRestartQuiz = () => {
+  this.props.navigation.navigate('QuizCards', { parentId: id })
+}
+
+handleBackToDeck = () => {
+  this.props.navigation.navigate('DeckOverview', { id })
+}
 class QuizSummary extends Component {
   render() {
     return (
@@ -26,16 +33,15 @@ class QuizSummary extends Component {
         </View>
         <View style={styles.container}>
           <OutlineButton 
-            borderColor='black' textColor='black' style={{ marginBottom: 15 }}
-            onPress={() => this.props.navigation.navigate('DeckOverview')}
-          >
-              Back to Deck
-          </OutlineButton>
-          <OutlineButton 
-            borderColor='black' textColor='black'
+            borderColor='black' textColor='black' style={{ marginBottom: 10 }}
             onPress={() => this.props.navigation.navigate('DeckList')}
           >
-            Back to Decks
+            Restart Quiz
+          </OutlineButton>
+          <OutlineButton 
+            borderColor='black' textColor='black' onPress={() => this.props.navigation.navigate('DeckOverview', {})}
+          >
+              Back to Deck
           </OutlineButton>
         </View>
       </View>

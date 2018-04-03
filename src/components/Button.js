@@ -1,13 +1,14 @@
 import React from 'react'
-import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
 import PropTypes from 'prop-types'
 
 const Button = ({ children, onPress, backgroundColor, textColor, style = {} }) => (
-  <TouchableOpacity style={[styles.btn, style, { backgroundColor }]} onPress={onPress}>
-    <Text style={[styles.bntText, { color: textColor }]}>{children}</Text>
+  <TouchableOpacity style={[styles.btn, style, { backgroundColor: backgroundColor || 'black' }]} onPress={onPress}>
+    <Text style={[styles.bntText, { color: textColor || 'white' }]}>{children}</Text>
   </TouchableOpacity>
 )
 
+const width = Dimensions.get('window').width
 const styles = StyleSheet.create({
   btn: {
     borderRadius: 5,
@@ -16,16 +17,12 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
+    width: width * 0.6
   },
   bntText: {
     fontSize: 30,
     textAlign: 'center',
   }
 })
-
-Button.propTypes = {
-  backgroundColor: PropTypes.string.isRequired,
-  textColor: PropTypes.string.isRequired,
-}
 
 export default Button

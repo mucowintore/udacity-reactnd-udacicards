@@ -20,16 +20,17 @@ class NewDeckForm extends React.Component {
   render () {
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
-        <Text style={styles.inputPrompt}>What is the title of your new deck?</Text>
-        <TextInput
-          style={[styles.inputField, { marginBottom: 30}]}
-          placeholder='Deck Title'
-          onChangeText={(text) => this.setState({ deckTitle: text })}
-        />
-        <Button backgroundColor='black' textColor='white' onPress={this.handleSubmit}>Create Deck</Button>
-        {/* <TouchableOpacity style={styles.submitBtn} onPress={this.handleSubmit}>
-          <Text style={styles.submitBtnText}>Create Deck</Text>
-        </TouchableOpacity> */}
+        <View style={[styles.container, { flex: 2, justifyContent: 'center' }]}>
+          <Text style={styles.inputPrompt}>What is the title of your new deck?</Text>
+          <TextInput
+            style={[styles.inputField]}
+            placeholder='Deck Title'
+            onChangeText={(text) => this.setState({ deckTitle: text })}
+          />
+        </View>
+        <View style={[styles.container, { flex: 1, justifyContent: 'center' }]}>
+          <Button backgroundColor='black' textColor='white' onPress={this.handleSubmit}>Submit</Button>
+        </View>
       </KeyboardAvoidingView>
     )
   }
@@ -43,17 +44,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   inputPrompt: {
-    fontSize: 40,
-    fontWeight: '600',
+    fontSize: 45,
+    fontWeight: 'bold',
     textAlign: 'center',
     margin: 20,
-    marginBottom: 50,
   },
   inputField: {
-    height: 50,
+    height: 60,
     padding: 10,
-    marginLeft: 15,
-    marginRight: 15,
     fontSize: 20,
     borderColor: 'black',
     borderRadius: 5,

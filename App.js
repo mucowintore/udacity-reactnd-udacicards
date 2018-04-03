@@ -84,7 +84,7 @@ const DeckStack = StackNavigator({
         backgroundColor: 'white',
       }
     }
-  },  
+  },
 }, {
   navigationOptions: {
     header: null

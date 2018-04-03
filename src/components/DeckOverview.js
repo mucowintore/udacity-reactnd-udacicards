@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 import PropTypes from 'prop-types'
+import Button from './Button'
+import OutlineButton from './OutlineButton'
 
 class DeckOverview extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -28,17 +30,12 @@ class DeckOverview extends React.Component {
           <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
         </View>
         <View style={[styles.container, {justifyContent: 'flex-start'}]}>
-          <TouchableOpacity 
-            style={[styles.btn, { borderColor: 'black', borderWidth: 1}]} 
-            onPress={this.handleAddCard}
-          >
-            <Text style={styles.btnText}>Add Card</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={[styles.btn, { marginTop: 10, backgroundColor: 'black'}]}
-            onPress={this.handleStartQuiz}>
-            <Text style={[styles.btnText, { color: 'white'}]}>Start Quiz</Text>
-          </TouchableOpacity>
+          <OutlineButton borderColor='black' textColor='black' onPress={this.handleAddCard} style={{marginBottom: 10}}>
+            Add Card
+          </OutlineButton>
+          <Button backgroundColor='black' textColor='white' onPress={this.handleStartQuiz}>
+            Start a Quiz
+          </Button>
         </View>
       </View>
     )
