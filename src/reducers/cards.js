@@ -17,12 +17,18 @@ export default function reducer (cards = {}, action) {
 
 const ADD_CARD = 'ADD_CARD'
 
+export const getCardsFromDeck = (deckId, cards) => (
+  Object.keys(cards)
+    .filter(id => cards[id].parentId === deckId)
+    .map(id => cards[id])
+)
+
 export const addCard = (parentId, question, answer) => ({ 
   type: ADD_CARD, 
   addedCard: { 
+    id: uuid(),
     parentId,
     question,
     answer,
-    id: uuid() 
   }
 })

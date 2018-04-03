@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Text, KeyboardAvoidingView, View, StyleSheet, TextInput, TouchableOpacity, Dimensions, Keyboard } from 'react-native'
+import { 
+  Text, 
+  KeyboardAvoidingView, 
+  View, 
+  StyleSheet, 
+  TextInput,
+  Dimensions, 
+  Keyboard 
+} from 'react-native'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 import { addCard } from '../reducers/cards'
@@ -15,10 +23,10 @@ export class NewCardForm extends Component {
 
   handleSubmit = () => {
     const { question, answer } = this.state
-    const { parentId } = this.props.navigation.state.params
+    const { deckId } = this.props.navigation.state.params
 
-    this.props.addCard(parentId, question, answer)
-    this.props.incrementDeckCardCount(parentId)
+    this.props.addCard(deckId, question, answer)
+    this.props.incrementDeckCardCount(deckId)
 
     Keyboard.dismiss()
 
@@ -39,7 +47,7 @@ export class NewCardForm extends Component {
             <Text style={styles.inputLabel}>Answer</Text>
             <TextInput 
               style={styles.inputField}
-              onChangeText={(text) => this.setState({ question: text })}
+              onChangeText={(text) => this.setState({ answer: text })}
             />
           </View>
         </View>

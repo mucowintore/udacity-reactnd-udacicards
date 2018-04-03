@@ -4,25 +4,26 @@ import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
 import PropTypes from 'prop-types'
 
-import { getDeckIds } from '../reducers/decks'
+import { getDecksArray } from '../reducers/decks'
 import DeckListItem from './DeckListItem'
 import Button from './Button'
+import OutlineButton from './OutlineButton'
 
 class DeckList extends React.Component {
   handleAddDeck = () => {
     this.props.navigation.navigate('NewDeckForm')
   }
   render() {
-    const { decksData } = this.props
+    const { decks } = this.props
     
     return (
       <View style={styles.container}>
-        {decksData.length
+        {decks.length
           ? <FlatList
               style={{flex: 1}}
-              data={decksData}
-              renderItem={({ item }) => <DeckListItem id={item.id}/>}
-              ItemSeparatorComponent={this.renderSeparator}
+              data={decks}
+              renderItem={({ item }) => <DeckListItem deckTitle={item.deckTitle} deckCardCount={item.deckCardCount} deckId={item.id}/>}
+              keyExtractor={(item, index) => item.id}
             />
           : <View>
               <View style={[styles.container, {justifyContent: 'flex-end'}]}>
@@ -33,8 +34,6 @@ class DeckList extends React.Component {
                   Add Deck
                 </Button>
               </View>
-              
-              
             </View>
         }
       </View>
@@ -42,11 +41,6 @@ class DeckList extends React.Component {
   }
 }
 
-function mapStateToProps ({ decks }) {
-  return { 
-    decksData: getDeckIds(decks).map(id => ({ key: id, id })),
-  }
-}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -61,5 +55,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 })
+
+function mapStateToProps ({ decks }) {
+  return {
+    decks: getDecksArray(decks)
+  }
+}
 
 export default withNavigation(connect(mapStateToProps)(DeckList))

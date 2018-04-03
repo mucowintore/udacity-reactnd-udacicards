@@ -1,14 +1,13 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import { withNavigation } from 'react-navigation'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 
 class DeckListItem extends React.Component {
   handleClick = () => {
-    const { id } = this.props
-    this.props.navigation.navigate('DeckOverview', { id })
+    const { deckId } = this.props
+    this.props.navigation.navigate('DeckOverview', { deckId })
   }
   render() {
     const {
@@ -28,10 +27,6 @@ class DeckListItem extends React.Component {
   }
 }
 
-function mapStateToProps ({ decks }, props) {
-  // console.log(`DeckListItem mapStateToProps ownProps: ${JSON.stringify(props)}`)
-  return decks[props.id]
-}
 const styles = StyleSheet.create({
   deck : {
     flex: 1,
@@ -56,4 +51,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(connect(mapStateToProps)(DeckListItem))
+export default withNavigation(DeckListItem)

@@ -13,33 +13,38 @@ const Bold = ({ children }) => (
   <Text style={{fontWeight: 'bold'}}>{children}</Text>
 )
 
-handleRestartQuiz = () => {
-  this.props.navigation.navigate('QuizCards', { parentId: id })
-}
 
-handleBackToDeck = () => {
-  this.props.navigation.navigate('DeckOverview', { id })
-}
 class QuizSummary extends Component {
+  
+  handleRestartQuiz = () => {
+    const { deckId } = this.props
+    this.props.navigation.navigate('Quiz', { deckId })
+  }
+  handleBackToDeck = () => {
+    const { deckId } = this.props
+    this.props.navigation.goBack()
+  }
   render() {
+    const { correct, total } = this.props
     return (
       <View style={styles.container}>
         <View style={[styles.container, {marginTop: 20}]}>
           <Text style={styles.completionText}>You've completed the quiz!</Text>
           <Text style={[styles.score, {fontWeight: 'bold'}]}>Your Score</Text>
           <Text style={styles.score}>
-            <Bold>{toPercent(props.correct, props.total)}%</Bold> (<Bold>{props.correct}</Bold> correct out of <Bold>{props.total})</Bold>
+            <Bold>{toPercent(correct, total)}%</Bold> (<Bold>{correct}</Bold> correct out of <Bold>{total})</Bold>
           </Text>
         </View>
         <View style={styles.container}>
           <OutlineButton 
             borderColor='black' textColor='black' style={{ marginBottom: 10 }}
-            onPress={() => this.props.navigation.navigate('DeckList')}
+            onPress={this.handleRestartQuiz}
           >
             Restart Quiz
           </OutlineButton>
           <OutlineButton 
-            borderColor='black' textColor='black' onPress={() => this.props.navigation.navigate('DeckOverview', {})}
+            borderColor='black' textColor='black' 
+            onPress={this.handleBackToDeck}
           >
               Back to Deck
           </OutlineButton>

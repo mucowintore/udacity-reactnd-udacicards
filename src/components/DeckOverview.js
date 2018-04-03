@@ -1,10 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { recordQuiz } from '../reducers/ui'
 import { withNavigation } from 'react-navigation'
 import PropTypes from 'prop-types'
 import Button from './Button'
 import OutlineButton from './OutlineButton'
+import { todayDate } from '../utils'
 
 class DeckOverview extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -12,17 +14,19 @@ class DeckOverview extends React.Component {
   })
 
   handleAddCard = () => {
-    const { id } = this.props
-    this.props.navigation.navigate('NewCardForm', { parentId: id })
+    const { deckId } = this.props.navigation.state.params
+    this.props.navigation.navigate('NewCardForm', { deckId })
   }
 
   handleStartQuiz = () => {
-    const { id } = this.props
-    this.props.navigation.navigate('QuizCards', { parentId: id })
+    const { deckId } = this.props.navigation.state.params
+    this.props.navigation.navigate('Quiz', { deckId })
+    this.props.recordQuiz(todayDate())
   }
 
   render() {
     const { deckTitle, deckCardCount } = this.props
+
     return (
       <View style={styles.container}>
         <View style={[styles.container, {justifyContent: 'flex-end'}]}>
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps ( { decks }, props) {
-  const { id } = props.navigation.state.params
-  return decks[id]
+  const { deckId } = props.navigation.state.params
+  return decks[deckId]
 }
-export default withNavigation(connect(mapStateToProps, null)(DeckOverview))
+export default withNavigation(connect(mapStateToProps, { recordQuiz })(DeckOverview))

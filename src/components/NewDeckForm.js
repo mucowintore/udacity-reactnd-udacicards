@@ -1,5 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, KeyboardAvoidingView, Keyboard } from 'react-native'
+import { 
+  Text, 
+  View,
+  StyleSheet, 
+  TextInput,
+  Dimensions,
+  KeyboardAvoidingView,
+  Keyboard
+} from 'react-native'
 import { connect } from 'react-redux'
 import Button from './Button'
 import { addDeck } from '../reducers/decks'

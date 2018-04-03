@@ -5,8 +5,8 @@ export default function reducer (decks = {}, action) {
     case ADD_DECK: {
       const { addedDeck } = action
       return {
-        ...decks,
         [addedDeck.id]: addedDeck,
+        ...decks,        
       }
     }
     case INCREMENT_DECK_CARD_COUNT: {
@@ -24,8 +24,10 @@ export default function reducer (decks = {}, action) {
   }
 }
 
-export const getDeckIds = (decks) => Object.keys(decks)
-
+export const getDecksArray = (decks) => (
+    Object.keys(decks)
+    .map(id => decks[id])
+)
 
 const ADD_DECK = 'ADD_DECK'
 const INCREMENT_DECK_CARD_COUNT = 'INCREMENT_DECK_CARD_COUNT'
