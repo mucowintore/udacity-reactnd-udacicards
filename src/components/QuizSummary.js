@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import OutlineButton from './OutlineButton'
 
-const scoreInPercent = (correct, total) => total != 0 ? Math.floor(correct / total * 100) : 0
+const scoreInPercent = (correct, total) => Math.floor(correct / total * 100)
 const B = ({ children }) => (
   <Text style={{fontWeight: 'bold'}}>{children}</Text>
 )
