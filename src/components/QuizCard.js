@@ -19,9 +19,11 @@ class QuizCard extends React.Component {
   handleCorrectClick = () => {
     this.props.incrementCorrectCount()
     this.props.incrementCurrentCardIndex()
+    this.setState({ isQuestionVisible: true })
   } 
   handleIncorrectClick = () => {
     this.props.incrementCurrentCardIndex()
+    this.setState({ isQuestionVisible: true })
   }
   
   render() {
