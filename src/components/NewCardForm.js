@@ -15,7 +15,7 @@ import { incrementDeckCardCount } from '../reducers/decks'
 
 import Button from './Button'
 
-export class NewCardForm extends Component {
+class NewCardForm extends Component {
   state = {
     question: '',
     answer: '',
@@ -85,23 +85,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
   },
-  addBtn: {
-    marginLeft: 100,
-    marginRight: 100,
-    marginTop: 50,
-    backgroundColor: 'black',
-    borderRadius: 5,
-    paddingLeft: 20,
-    paddingRight: 20,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  addBtnText: {
-    fontSize: 30,
-    textAlign: 'center',
-    color: 'white'
-  }
 })
 
-export default withNavigation(connect(null, { addCard, incrementDeckCardCount })(NewCardForm))
+export default withNavigation(connect(
+  null, 
+  { addCard, incrementDeckCardCount }
+)(NewCardForm))

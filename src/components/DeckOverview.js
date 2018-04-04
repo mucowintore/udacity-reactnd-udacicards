@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
-import PropTypes from 'prop-types'
+
+import { scheduleNextNotification } from '../utils'
 import Button from './Button'
 import OutlineButton from './OutlineButton'
-import { todayDate, scheduleNextNotification } from '../utils'
-import { Permissions } from 'expo'
+
 
 class DeckOverview extends React.Component {
   handleAddCard = () => {
@@ -30,12 +30,14 @@ class DeckOverview extends React.Component {
           <Text style={styles.deckCardCount}>{deckCardCount} cards</Text>
         </View>
         <View style={[styles.container, {justifyContent: 'flex-start'}]}>
-          <OutlineButton borderColor='black' textColor='black' onPress={this.handleAddCard} style={{marginBottom: 10}}>
+          <OutlineButton onPress={this.handleAddCard} style={{marginBottom: 10}}>
             Add Card
           </OutlineButton>
-          <Button backgroundColor='black' textColor='white' onPress={this.handleStartQuiz} disabled={deckCardCount === 0}>
-            Start a Quiz
-          </Button>
+          { deckCardCount > 0 && (
+            <Button onPress={this.handleStartQuiz}>
+              Start a Quiz
+            </Button>
+          )}            
         </View>
       </View>
     )
@@ -58,23 +60,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     color: 'gray'
-  },
-  btn: {
-    borderRadius: 5,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btnText: {
-    fontSize: 30,
-    textAlign: 'center',
-  },
+  }
 })
 
 function mapStateToProps ( { decks }, props) {
   const { deckId } = props.navigation.state.params
   return decks[deckId]
 }
+
 export default withNavigation(connect(mapStateToProps)(DeckOverview))

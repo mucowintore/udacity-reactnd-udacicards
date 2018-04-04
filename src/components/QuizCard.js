@@ -7,13 +7,6 @@ import {
 } from 'react-native'
 import Button from './Button'
 
-const props = {
-  correct: 3,
-  total: 8,
-  question: 'Does React work with Android?',
-  answer: 'Yes',
-  answerShown: false,
-}
 
 class QuizCard extends React.Component {
   state = {
@@ -36,8 +29,8 @@ class QuizCard extends React.Component {
     const { isQuestionVisible } = this.state
 
     return (
-      <View style={[styles.container, {flex: 5}]}>
-        <View style={[styles.container, {justifyContent: 'center'}]}>
+      <View style={styles.container}>
+        <View style={styles.container}>
           <Text style={styles.text}>{ isQuestionVisible ? question : answer}</Text>
           <TouchableOpacity onPress={this.handleTextButtonClick}>
             <Text style={styles.textBtn}>
@@ -79,11 +72,5 @@ const styles = StyleSheet.create({
     color: 'red',
   },
 })
-// const QuizCard = ({ question, answer }) => (
-//   <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 1}}>
-//     <Text>{question}</Text>
-//     <Text>{answer}</Text>
-//   </View> 
-// )
 
 export default QuizCard

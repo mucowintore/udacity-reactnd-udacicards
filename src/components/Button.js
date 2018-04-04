@@ -1,9 +1,11 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
-import PropTypes from 'prop-types'
 
 const Button = ({ children, onPress, backgroundColor, textColor, style = {} }) => (
-  <TouchableOpacity style={[styles.btn, style, { backgroundColor: backgroundColor || 'black' }]} onPress={onPress}>
+  <TouchableOpacity 
+    style={[styles.btn, style, { backgroundColor: backgroundColor || 'black' }]} 
+    onPress={onPress}
+  >
     <Text style={[styles.bntText, { color: textColor || 'white' }]}>
       {children}
     </Text>

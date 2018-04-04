@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
-import PropTypes from 'prop-types'
 
 import { getDecksArray } from '../reducers/decks'
 import DeckListItem from './DeckListItem'

@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import { withNavigation } from 'react-navigation'
-import PropTypes from 'prop-types'
 
 
 class DeckListItem extends React.Component {
@@ -27,6 +26,7 @@ class DeckListItem extends React.Component {
   }
 }
 
+const { width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   deck : {
     flex: 1,
@@ -39,15 +39,15 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold'
   },
-  separator: {
-    height: 1,
-    width: Dimensions.get('window').width,
-    backgroundColor: "#CED0CE",
-  },
   deckCardCount: {
     fontSize: 20,
     textAlign: 'center',
     color: 'gray'
+  },
+  separator: {
+    height: 1,
+    width: width,
+    backgroundColor: "#CED0CE",
   }
 })
 

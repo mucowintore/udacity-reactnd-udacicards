@@ -1,10 +1,11 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
-import PropTypes from 'prop-types'
 
 const OutlineButton = ({ children, onPress, style }) => (
   <TouchableOpacity style={[styles.btn, style ]} onPress={onPress}>
-    <Text style={styles.bntText}>{children}</Text>
+    <Text style={styles.bntText}>
+      {children}
+    </Text>
   </TouchableOpacity>
 )
 

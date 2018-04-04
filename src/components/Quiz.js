@@ -24,6 +24,7 @@ class Quiz extends Component {
 
   incrementCorrectCount = () => this.setState((state) => ({ correct: state.correct + 1}))
   incrementCurrentCardIndex = () => this.setState((state) => ({ currentCardIndex: state.currentCardIndex + 1}))
+  restartQuiz = () => this.setState({ currentCardIndex: 0, correct: 0 })
 
   render() {
     const { cards } = this.props
@@ -39,16 +40,21 @@ class Quiz extends Component {
               <View style={styles.container}>
                 <Text style={styles.score}>{currentCardIndex + 1}/{cards.length}</Text>
               </View>
-              <QuizCard 
-                question={card.question} 
-                answer={card.answer} 
-                incrementCorrectCount={this.incrementCorrectCount}
-                incrementCurrentCardIndex={this.incrementCurrentCardIndex}
-              />
+              <View style={[styles.container, { flex: 5}]}>
+                <QuizCard 
+                  question={card.question} 
+                  answer={card.answer} 
+                  incrementCorrectCount={this.incrementCorrectCount}
+                  incrementCurrentCardIndex={this.incrementCurrentCardIndex}
+                />
+              </View>              
             </View> 
-          : <QuizSummary correct={correct} total={cards.length} deckId={deckId}/>
+          : <QuizSummary 
+              correct={correct} 
+              total={cards.length} 
+              deckId={deckId}
+              handleRestartQuiz={this.restartQuiz}/>
         }
-        
       </View>
     )
   }

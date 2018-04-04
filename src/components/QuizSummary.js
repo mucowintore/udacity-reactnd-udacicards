@@ -10,16 +10,13 @@ const B = ({ children }) => (
 
 
 class QuizSummary extends Component {
-  handleRestartQuiz = () => {
-    const { deckId } = this.props
-    this.props.navigation.navigate('Quiz', { deckId })
-  }
   handleBackToDeck = () => {
     const { deckId } = this.props
     this.props.navigation.goBack()
   }
   render() {
-    const { correct, total } = this.props
+    const { correct, total, handleRestartQuiz } = this.props
+
     return (
       <View style={styles.container}>
         <View style={[styles.container, {marginTop: 20}]}>
@@ -32,7 +29,7 @@ class QuizSummary extends Component {
         <View style={styles.container}>
           <OutlineButton 
             borderColor='black' textColor='black' style={{ marginBottom: 10 }}
-            onPress={this.handleRestartQuiz}
+            onPress={handleRestartQuiz}
           >
             Restart Quiz
           </OutlineButton>
