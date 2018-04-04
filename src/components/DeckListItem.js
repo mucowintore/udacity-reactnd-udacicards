@@ -5,8 +5,8 @@ import { withNavigation } from 'react-navigation'
 
 class DeckListItem extends React.Component {
   handleClick = () => {
-    const { deckId } = this.props
-    this.props.navigation.navigate('DeckOverview', { deckId })
+    const { deckId, deckTitle } = this.props
+    this.props.navigation.navigate('DeckOverview', { deckId, deckTitle })
   }
   render() {
     const {
