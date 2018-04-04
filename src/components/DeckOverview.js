@@ -9,6 +9,12 @@ import OutlineButton from './OutlineButton'
 
 
 class DeckOverview extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    const { deckTitle } = navigation.state.params
+    return {
+      title: deckTitle
+    }
+  }
   handleAddCard = () => {
     const { deckId } = this.props.navigation.state.params
     this.props.navigation.navigate('NewCardForm', { deckId })

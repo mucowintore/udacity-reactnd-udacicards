@@ -30,28 +30,42 @@ const DeckStack = StackNavigator({
   DeckList: {
     screen: DeckList,
     navigationOptions: {
-      header: null,
+      header: null
     }
   },
   DeckOverview: {
     screen: DeckOverview,
     navigationOptions: {
-      header: null,
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'black',
+      }
     }
   },
   NewCardForm: {
     screen: NewCardForm,
+    navigationOptions: {
+      headerTitle: 'Add New Card',
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'black',
+      }
+    }
   },
   Quiz: {
     screen: Quiz,
     navigationOptions: {
-      header: null,
+      header: null
     }
   },
   QuizSummary: {
     screen: QuizSummary,
     navigationOptions: {
-      header: null,
+      headerTitle: 'Quiz Summary',
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'black',
+      }
     }
   },
 })
@@ -90,7 +104,9 @@ const Tabs = TabNavigator({
       shadowOpacity: 1,
     },
   },
+  tabBarPosition: 'bottom',
   animationEnabled: true,
+  swipeEnabled: false
 })
 
 

@@ -6,7 +6,8 @@ import {
   StyleSheet, 
   TextInput,
   Dimensions, 
-  Keyboard 
+  Keyboard,
+  Platform
 } from 'react-native'
 import { connect } from 'react-redux'
 import { withNavigation } from 'react-navigation'
@@ -33,9 +34,10 @@ class NewCardForm extends Component {
     this.props.navigation.goBack()
   }
   render() {
+    const keyboardAvoidingViewBehaviorProp = Platform.OS === 'ios' ? { behavior: 'padding' } : { behavior: 'position' }
     return (
-      <KeyboardAvoidingView style={styles.container} behavior='padding'>
-        <View style={[styles.container, { justifyContent: 'flex-end'}]}>
+      <KeyboardAvoidingView style={styles.container} behavior={padding}>
+        <View style={styles.container}>
           <View style={styles.input}>
             <Text style={styles.inputLabel}>Question</Text>
             <TextInput 
@@ -50,8 +52,6 @@ class NewCardForm extends Component {
               onChangeText={(text) => this.setState({ answer: text })}
             />
           </View>
-        </View>
-        <View style={styles.container}>
           <Button onPress={this.handleSubmit}>
             Submit
           </Button>

@@ -2,7 +2,7 @@
 
 UdaciCards is a cross-platform mobile app that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
-This project was tested on both iOS and Android.
+This project was tested on both iOS (iPhone 6s) and Android (Samsung Galaxy J5).
 
 ## Installing
 

@@ -6,7 +6,8 @@ import {
   TextInput,
   Dimensions,
   KeyboardAvoidingView,
-  Keyboard
+  Keyboard,
+  Platform
 } from 'react-native'
 import { connect } from 'react-redux'
 import Button from './Button'
@@ -35,8 +36,6 @@ class NewDeckForm extends React.Component {
             placeholder='Deck Title'
             onChangeText={(text) => this.setState({ deckTitle: text })}
           />
-        </View>
-        <View style={[styles.container, { flex: 1, justifyContent: 'center' }]}>
           <Button backgroundColor='black' textColor='white' onPress={this.handleSubmit}>Submit</Button>
         </View>
       </KeyboardAvoidingView>
@@ -65,6 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     width: width * 0.85,
+    marginBottom: 20,
   },
 })
 
