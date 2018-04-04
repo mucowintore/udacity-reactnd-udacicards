@@ -1,5 +1,7 @@
 import uuid from 'uuid/v4'
 
+const ADD_CARD = 'ADD_CARD'
+
 export default function reducer (cards = {}, action) {
   switch(action.type) {
     case ADD_CARD: {
@@ -13,9 +15,6 @@ export default function reducer (cards = {}, action) {
       return cards
   }
 }
-
-
-const ADD_CARD = 'ADD_CARD'
 
 export const getCardsFromDeck = (deckId, cards) => (
   Object.keys(cards)

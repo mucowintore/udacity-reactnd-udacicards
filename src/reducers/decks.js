@@ -41,4 +41,7 @@ export const addDeck = (deckTitle) => ({
   }
 })
 
-export const incrementDeckCardCount = (deckId) => ({ type: INCREMENT_DECK_CARD_COUNT, deckId })
+export const incrementDeckCardCount = (deckId) => ({ 
+  type: INCREMENT_DECK_CARD_COUNT, 
+  deckId 
+})

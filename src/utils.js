@@ -1,18 +1,16 @@
 import { Permissions, Notifications } from 'expo'
 
-export async function scheduleNextNotification () {
+export const scheduleNextNotification = async function () {
   const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
 
   if (status === 'granted') {
-    let nextDay = new Date()
-    nextDay.setDate(nextDay.getDate() + 1)
-    nextDay.setHours(20)
-    nextDay.setMinutes(0)
-
+    let today = new Date()
+    let tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, 20, 0)
+    
     await Notifications.cancelAllScheduledNotificationsAsync()
     await Notifications.scheduleLocalNotificationAsync(
       createNotification(), {
-      time: nextDay,
+      time: tomorrow,
       repeat: 'day'
     })
   }
@@ -27,7 +25,6 @@ const createNotification = () => ({
   android: {
     sound: true,
     priority: 'high',
-
     sticky: false,
     vibrate: true,
   }
