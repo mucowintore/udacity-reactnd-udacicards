@@ -34,7 +34,7 @@ class QuizCard extends React.Component {
           <Text style={styles.text}>{ isQuestionVisible ? question : answer}</Text>
           <TouchableOpacity onPress={this.handleTextButtonClick}>
             <Text style={styles.textBtn}>
-              {isQuestionVisible ? 'Answer' : 'Question'}
+              {isQuestionVisible ? 'Show Answer' : 'Show Question'}
             </Text>
           </TouchableOpacity>
         </View>
@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    fontSize: 40,
+    fontSize: 30,
     margin: 20,
     textAlign: 'center',
   },
   textBtn:{
-    fontSize: 20,
+    fontSize: 15,
     color: 'red',
   },
 })

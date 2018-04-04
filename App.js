@@ -55,7 +55,11 @@ const DeckStack = StackNavigator({
   Quiz: {
     screen: Quiz,
     navigationOptions: {
-      header: null
+      headerTitle: 'Quiz',
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'black',
+      }
     }
   },
   QuizSummary: {
