@@ -5,27 +5,26 @@ import {
   View,
   StatusBar, 
   Dimensions,
+  AsyncStorage
 } from 'react-native'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux' 
-import devToolsEnhancer from 'remote-redux-devtools'
+import { createStore } from 'redux'
+// import devToolsEnhancer from 'remote-redux-devtools'
 import { Permissions } from 'expo'
-import rootReducer from './src/reducers'
-import { addDeck } from './src/reducers/decks'
-
-import DeckOverview from './src/components/DeckOverview'
-import DeckList from './src/components/DeckList'
-import NewDeckForm from './src/components/NewDeckForm'
-import NewCardForm from './src/components/NewCardForm'
-import Button from './src/components/Button'
-import QuizSummary from './src/components/QuizSummary'
-import Quiz from './src/components/Quiz'
-import OutlineButton from './src/components/OutlineButton'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './src/configureStore'
 
+import rootReducer from './src/reducers'
+import DeckList from './src/components/DeckList'
+import NewDeckForm from './src/components/NewDeckForm'
+import DeckOverview from './src/components/DeckOverview'
+import NewCardForm from './src/components/NewCardForm'
+import Quiz from './src/components/Quiz'
+import QuizSummary from './src/components/QuizSummary'
+import LoadingView from './src/components/LoadingView'
 
-const store = createStore(rootReducer, devToolsEnhancer())
 
 const DeckStack = StackNavigator({
   DeckList: {
@@ -104,9 +103,9 @@ export default class App extends React.Component {
   render () {
     return (
       <Provider store={store}>
-        <View style={{flex: 1}}>
+        <PersistGate loading={<LoadingView />} persistor={persistor}>
           <Tabs/>
-        </View>
+        </PersistGate>
       </Provider>
     )
   }

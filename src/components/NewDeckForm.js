@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   inputPrompt: {
-    fontSize: 45,
+    fontSize: 40,
     fontWeight: 'bold',
     textAlign: 'center',
     margin: 20,

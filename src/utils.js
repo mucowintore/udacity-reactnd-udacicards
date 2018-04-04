@@ -4,15 +4,15 @@ export async function scheduleNextNotification () {
   const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
 
   if (status === 'granted') {
-    let nextTime = new Date()
-    nextTime.setDate(nextTime.getDate() + 1)
-    nextTime.setHours(20)
-    nextTime.setMinutes(0)
+    let nextDay = new Date()
+    nextDay.setDate(nextDay.getDate() + 1)
+    nextDay.setHours(20)
+    nextDay.setMinutes(0)
 
     await Notifications.cancelAllScheduledNotificationsAsync()
     await Notifications.scheduleLocalNotificationAsync(
       createNotification(), {
-      time: nextTime,
+      time: nextDay,
       repeat: 'day'
     })
   }
