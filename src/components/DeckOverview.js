@@ -1,18 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { recordQuiz } from '../reducers/ui'
 import { withNavigation } from 'react-navigation'
 import PropTypes from 'prop-types'
 import Button from './Button'
 import OutlineButton from './OutlineButton'
-import { todayDate } from '../utils'
+import { todayDate, scheduleNextNotification } from '../utils'
+import { Permissions } from 'expo'
 
 class DeckOverview extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.deckTitle
-  })
-
   handleAddCard = () => {
     const { deckId } = this.props.navigation.state.params
     this.props.navigation.navigate('NewCardForm', { deckId })
@@ -20,8 +16,8 @@ class DeckOverview extends React.Component {
 
   handleStartQuiz = () => {
     const { deckId } = this.props.navigation.state.params
+    scheduleNextNotification()
     this.props.navigation.navigate('Quiz', { deckId })
-    this.props.recordQuiz(todayDate())
   }
 
   render() {
@@ -37,7 +33,7 @@ class DeckOverview extends React.Component {
           <OutlineButton borderColor='black' textColor='black' onPress={this.handleAddCard} style={{marginBottom: 10}}>
             Add Card
           </OutlineButton>
-          <Button backgroundColor='black' textColor='white' onPress={this.handleStartQuiz}>
+          <Button backgroundColor='black' textColor='white' onPress={this.handleStartQuiz} disabled={deckCardCount === 0}>
             Start a Quiz
           </Button>
         </View>
@@ -81,4 +77,4 @@ function mapStateToProps ( { decks }, props) {
   const { deckId } = props.navigation.state.params
   return decks[deckId]
 }
-export default withNavigation(connect(mapStateToProps, { recordQuiz })(DeckOverview))
+export default withNavigation(connect(mapStateToProps)(DeckOverview))

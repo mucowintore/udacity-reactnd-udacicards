@@ -9,6 +9,7 @@ import {
 import { createStore } from 'redux'
 import { Provider } from 'react-redux' 
 import devToolsEnhancer from 'remote-redux-devtools'
+import { Permissions } from 'expo'
 import rootReducer from './src/reducers'
 import { addDeck } from './src/reducers/decks'
 
@@ -97,6 +98,9 @@ const Tabs = TabNavigator({
 
 
 export default class App extends React.Component {
+  async componentDidMount() {
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+  }
   render () {
     return (
       <Provider store={store}>

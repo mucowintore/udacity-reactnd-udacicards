@@ -3,19 +3,13 @@ import { Text, View, StyleSheet } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import OutlineButton from './OutlineButton'
 
-const props = {
-  correct: 7,
-  total: 10,
-}
-
-const toPercent = (num, dem) => Math.floor(num / dem * 100)
-const Bold = ({ children }) => (
+const scoreInPercent = (correct, total) => total != 0 ? Math.floor(correct / total * 100) : 0
+const B = ({ children }) => (
   <Text style={{fontWeight: 'bold'}}>{children}</Text>
 )
 
 
 class QuizSummary extends Component {
-  
   handleRestartQuiz = () => {
     const { deckId } = this.props
     this.props.navigation.navigate('Quiz', { deckId })
@@ -32,7 +26,7 @@ class QuizSummary extends Component {
           <Text style={styles.completionText}>You've completed the quiz!</Text>
           <Text style={[styles.score, {fontWeight: 'bold'}]}>Your Score</Text>
           <Text style={styles.score}>
-            <Bold>{toPercent(correct, total)}%</Bold> (<Bold>{correct}</Bold> correct out of <Bold>{total})</Bold>
+            <B>{scoreInPercent(correct, total)}%</B> (<B>{correct}</B> correct out of <B>{total})</B>
           </Text>
         </View>
         <View style={styles.container}>
