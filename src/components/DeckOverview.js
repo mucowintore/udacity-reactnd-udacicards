@@ -41,7 +41,7 @@ class DeckOverview extends React.Component {
           </OutlineButton>
           { deckCardCount > 0 && (
             <Button onPress={this.handleStartQuiz}>
-              Start a Quiz
+              Start Quiz
             </Button>
           )}            
         </View>
