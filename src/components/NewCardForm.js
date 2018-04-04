@@ -36,7 +36,7 @@ class NewCardForm extends Component {
   render() {
     const keyboardAvoidingViewBehaviorProp = Platform.OS === 'ios' ? { behavior: 'padding' } : { behavior: 'position' }
     return (
-      <KeyboardAvoidingView style={styles.container} behavior={padding}>
+      <KeyboardAvoidingView style={styles.container} {...keyboardAvoidingViewBehaviorProp}>
         <View style={styles.container}>
           <View style={styles.input}>
             <Text style={styles.inputLabel}>Question</Text>

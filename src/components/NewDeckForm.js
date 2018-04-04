@@ -29,10 +29,10 @@ class NewDeckForm extends React.Component {
   render () {
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
-        <View style={[styles.container, { flex: 2, justifyContent: 'center' }]}>
+        <View style={styles.container}>
           <Text style={styles.inputPrompt}>What is the title of your new deck?</Text>
           <TextInput
-            style={[styles.inputField]}
+            style={styles.inputField}
             placeholder='Deck Title'
             onChangeText={(text) => this.setState({ deckTitle: text })}
           />
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
     textAlign: 'center',
-    margin: 20,
+    marginBottom: 20,
   },
   inputField: {
     height: 60,
